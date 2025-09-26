@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" role="img" aria-label="Global Solutions logo" shape-rendering="geometricPrecision" text-rendering="optimizeLegibility">
+    <title>Global Solutions</title>
+    <defs>
+        <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="#0b2545"/>
+            <stop offset="100%" stop-color="#134074"/>
+        </linearGradient>
+    </defs>
+    <!-- Equal padding frame: 16 units on each side within 420x80 canvas -->
+    <!-- Icon: stylized snowflake + sun (HVAC) -->
+    <g transform="translate(16,16)">
+        <circle cx="40" cy="24" r="24" fill="url(#g)"/>
+        <g fill="none" stroke="#70a9a1" stroke-width="2" stroke-linecap="round" transform="translate(40,24)">
+            <path d="M0-15 L0 15"/>
+            <path d="M-15 0 L15 0"/>
+            <path d="M-11-11 L11 11"/>
+            <path d="M11-11 L-11 11"/>
+        </g>
+        <circle cx="40" cy="24" r="7" fill="#e6f2f1"/>
+    </g>
+    <!-- Wordmark -->
+    <g font-family="Inter, Arial, sans-serif" font-weight="700" font-size="28" fill="#00A0F3">
+        <!-- Baseline roughly centered vertically; generous right space ensures last 's' is visible -->
+        <text x="96" y="50">Global Solutions</text>
+    </g>
+</svg>
+
