@@ -52,29 +52,36 @@ document.addEventListener('DOMContentLoaded', function () {
 			e.preventDefault();
 			const formData = new FormData(form);
 			const payload = Object.fromEntries(formData);
-			// Ensure Web3Forms access key exists
-			if (!payload.access_key) {
-				alert('Missing Web3Forms Access Key. Add your access_key in the form.');
+			// Validate required fields
+			if (!payload.name || !payload.phone) {
+				alert('Name and phone are required.');
+				return;
+			}
+			if (!payload.access_key || payload.access_key === 'YOUR_WEB3FORMS_ACCESS_KEY') {
+				alert('Please configure Web3Forms access key in the form.');
 				return;
 			}
 
 			var endpoint = 'https://api.web3forms.com/submit';
-			// Ensure required hidden fields exist
-			if (!formData.get('access_key')) {
-				alert('Form is not configured. Please add Web3Forms access key.');
-				return;
-			}
 			fetch(endpoint, {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
 				body: JSON.stringify(payload)
 			})
-			.then(function (res) { return res.json().catch(function(){ return {}; }).then(function (data) { if (!res.ok || (data && data.success === false)) { throw new Error((data && data.message) || 'Failed'); } return data; }); })
+			.then(function (res) { 
+				return res.json().catch(function(){ return { success: false, message: 'Invalid response' }; }).then(function (data) { 
+					if (!res.ok || (data && data.success === false)) { 
+						throw new Error((data && data.message) || 'Failed to send'); 
+					} 
+					return data; 
+				}); 
+			})
 			.then(function () {
 				if (thanks) { thanks.style.display = 'inline'; }
 				form.reset();
 			})
 			.catch(function (err) {
+				console.error('Form submission error:', err);
 				alert('Sorry, we could not send your enquiry right now. ' + (err && err.message ? err.message : 'Please try again later.'));
 			});
 		});
