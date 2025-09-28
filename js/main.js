@@ -42,45 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	});
 
-	// Enquiry form -> Netlify Forms (native), no reload
-	(function initNetlifyForm() {
-		const form = document.querySelector('form[name="enquiry"][data-netlify="true"]');
-		if (!form) return;
-		const thanks = form.querySelector('.thanks');
-
-		form.addEventListener('submit', function (e) {
-			e.preventDefault();
-			const formData = new FormData(form);
-			
-			// Validate required fields
-			const name = formData.get('name');
-			const phone = formData.get('phone');
-			if (!name || !phone) {
-				alert('Name and phone are required.');
-				return;
-			}
-
-			// Submit to Netlify Forms
-			fetch('/', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-				body: new URLSearchParams(formData).toString()
-			})
-			.then(function (res) {
-				if (!res.ok) throw new Error('Failed to submit');
-				return res;
-			})
-			.then(function () {
-				if (thanks) { thanks.style.display = 'inline'; }
-				form.reset();
-			})
-			.catch(function (err) {
-				console.error('Form submission error:', err);
-				alert('Sorry, we could not send your enquiry right now. Please try again later.');
-			});
-		});
-	})();
-
 	// Gallery multi-tile slideshow (4 tiles, 3s per tile)
 	(function initGallerySlideshow() {
 		const tiles = Array.from(document.querySelectorAll('.gallery-slideshow .slide-tile'));
