@@ -42,39 +42,33 @@ document.addEventListener('DOMContentLoaded', function () {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	});
 
-	// Enquiry form -> Web3Forms (no backend), no reload
+	// Enquiry form -> Netlify Forms (native), no reload
 	(function initNetlifyForm() {
-		const form = document.querySelector('form[name="enquiry"]');
+		const form = document.querySelector('form[name="enquiry"][data-netlify="true"]');
 		if (!form) return;
 		const thanks = form.querySelector('.thanks');
 
 		form.addEventListener('submit', function (e) {
 			e.preventDefault();
 			const formData = new FormData(form);
-			const payload = Object.fromEntries(formData);
+			
 			// Validate required fields
-			if (!payload.name || !payload.phone) {
+			const name = formData.get('name');
+			const phone = formData.get('phone');
+			if (!name || !phone) {
 				alert('Name and phone are required.');
 				return;
 			}
-			if (!payload.access_key || payload.access_key === 'YOUR_WEB3FORMS_ACCESS_KEY') {
-				alert('Please configure Web3Forms access key in the form.');
-				return;
-			}
 
-			var endpoint = 'https://api.web3forms.com/submit';
-			fetch(endpoint, {
+			// Submit to Netlify Forms
+			fetch('/', {
 				method: 'POST',
-				headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-				body: JSON.stringify(payload)
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				body: new URLSearchParams(formData).toString()
 			})
-			.then(function (res) { 
-				return res.json().catch(function(){ return { success: false, message: 'Invalid response' }; }).then(function (data) { 
-					if (!res.ok || (data && data.success === false)) { 
-						throw new Error((data && data.message) || 'Failed to send'); 
-					} 
-					return data; 
-				}); 
+			.then(function (res) {
+				if (!res.ok) throw new Error('Failed to submit');
+				return res;
 			})
 			.then(function () {
 				if (thanks) { thanks.style.display = 'inline'; }
@@ -82,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
 			})
 			.catch(function (err) {
 				console.error('Form submission error:', err);
-				alert('Sorry, we could not send your enquiry right now. ' + (err && err.message ? err.message : 'Please try again later.'));
+				alert('Sorry, we could not send your enquiry right now. Please try again later.');
 			});
 		});
 	})();

@@ -102,7 +102,7 @@
 		<section id="about" class="section alt">
 			<div class="container">
 				<h2>About Us</h2>
-				<p><strong>Global Solutions</strong> is a specialist HVAC company delivering reliable, energy-conscious climate systems for workplaces, homes, and critical environments. Founded by <strong>Mr. Khadar Syed Yusuf</strong>, a veteran with over <strong>30 years</strong> in the industry, we combine engineering rigor with on-ground execution to deliver results on time, every time.</p>
+				<p><strong>Global Solutions</strong> is a specialist HVAC company delivering reliable, energy-conscious climate systems for workplaces, homes, and critical environments. Founded by <strong>Mr. Yusuf</strong>, a veteran with over <strong>30 years</strong> in the industry, we combine engineering rigor with on-ground execution to deliver results on time, every time.</p>
 				<div class="highlights">
 					<div>
 						<h3>30+ Years Expertise</h3>
@@ -203,9 +203,10 @@
 				<p class="section-intro">Send us your requirements and we will reach out promptly.</p>
 				<div class="enquiry">
 					<h3>Request a Callback</h3>
-					<form name="enquiry" method="POST" data-web3forms="true">
+					<form name="enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+						<input type="hidden" name="form-name" value="enquiry">
 						<p hidden>
-							<label>Don’t fill this out if you're human: <input name="bot-field"></label>
+							<label>Don't fill this out if you're human: <input name="bot-field"></label>
 						</p>
 						<div>
 							<label for="name">Name *</label>
@@ -227,9 +228,6 @@
 							<label for="requirement">Requirement (optional)</label>
 							<textarea id="requirement" name="requirement"></textarea>
 						</div>
-						<input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
-						<input type="hidden" name="subject" value="New enquiry - Global Solutions">
-						<input type="hidden" name="from_name" value="Global Solutions Website">
 						<div class="actions full">
 							<button class="btn primary" type="submit">Submit</button>
 							<span class="thanks" role="status">Thank you! We will contact you shortly.</span>
