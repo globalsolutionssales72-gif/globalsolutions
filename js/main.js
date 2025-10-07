@@ -126,5 +126,23 @@ document.addEventListener('DOMContentLoaded', function () {
 			setTimeout(scheduleNext, startDelayMs);
 		});
 	})();
+
+	// --- Scroll-triggered animation for sections and cards ---
+	function animateOnScroll() {
+		const animatedEls = document.querySelectorAll('.section, .card, .highlights > div, .slide-tile');
+		const observer = new window.IntersectionObserver((entries, obs) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('in-view');
+					obs.unobserve(entry.target);
+				}
+			});
+		}, { threshold: 0.15 });
+		animatedEls.forEach(el => {
+			el.classList.add('will-animate');
+			observer.observe(el);
+		});
+	}
+	animateOnScroll();
 });
 

@@ -167,3 +167,43 @@ body {
 	.safety-image { max-width: 150px; }
 }
 
+/* --- Scroll-triggered animation --- */
+.will-animate { opacity: 0; transform: translateY(40px); transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1); }
+.in-view { opacity: 1 !important; transform: none !important; }
+
+/* --- Card and section polish --- */
+.card, .highlights > div, .slide-tile {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border-radius: 14px;
+  border: 1px solid #e3eaf3;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.card:hover, .highlights > div:hover, .slide-tile:hover {
+  box-shadow: 0 8px 24px rgba(0,160,243,0.10);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.section {
+  background: #fff;
+  margin-bottom: 24px;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(0,90,153,0.03);
+}
+.section.alt {
+  background: #f7fbfc;
+}
+
+/* --- Mobile improvements --- */
+@media (max-width: 560px) {
+  .container { padding: 0 6px; }
+  .site-header, .footer-inner { padding-left: 0; padding-right: 0; }
+  .btn, .enquiry input, .enquiry textarea { font-size: 15px; }
+  .site-nav a, .btn { padding: 14px 18px; min-width: 44px; min-height: 44px; }
+  .card, .highlights > div, .slide-tile { padding: 12px; }
+  .section { padding: 28px 0; }
+  .hero-inner { padding: 24px 0; }
+}
+
+/* --- Touch target improvements --- */
+.btn, .site-nav a, .nav-toggle { min-width: 44px; min-height: 44px; }
+
