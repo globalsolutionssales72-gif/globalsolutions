@@ -301,6 +301,12 @@ img { max-width: 100%; height: auto; display: block; }
   .header-inner { justify-content: center !important; padding-left: 0 !important; padding-right: 0 !important; }
 }
 
+/* Fix: Increase logo/brand size and move to the right on mobile */
+@media (max-width: 768px) {
+  .logo { height: 96px !important; margin-left: 24px !important; margin-right: 0 !important; display: block !important; }
+  .header-inner { justify-content: flex-start !important; }
+}
+
 /* Fix: Light horizontal padding mobile - clean layout, no edge-to-edge text */
 @media (max-width: 768px) {
   body, main, .section, .section.alt, .container {
