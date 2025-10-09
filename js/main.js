@@ -182,5 +182,32 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 	window.addEventListener('resize', toggleStickyCtaBar);
 	window.addEventListener('DOMContentLoaded', toggleStickyCtaBar);
+
+	// Fix: Use logo as menu trigger on mobile instead of hamburger
+	function setupLogoMenuTrigger() {
+		var menuLogoBtn = document.getElementById('menuLogoBtn');
+		var nav = document.querySelector('.site-nav');
+		if (!menuLogoBtn || !nav) return;
+		function isMobile() { return window.innerWidth <= 768; }
+		function toggleMenu(e) {
+			if (isMobile()) {
+				e.preventDefault();
+				nav.classList.toggle('open');
+				var expanded = nav.classList.contains('open');
+				menuLogoBtn.setAttribute('aria-expanded', String(expanded));
+				document.body.style.overflow = expanded ? 'hidden' : '';
+			}
+		}
+		menuLogoBtn.addEventListener('click', toggleMenu);
+		// Hide normal navToggle on mobile
+		window.addEventListener('resize', function() {
+			var navToggle = document.querySelector('.nav-toggle');
+			if(navToggle) navToggle.style.display = isMobile() ? 'none' : '';
+		});
+		// Initial toggle state
+		var navToggle = document.querySelector('.nav-toggle');
+		if (navToggle && isMobile()) navToggle.style.display = 'none';
+	}
+	setupLogoMenuTrigger();
 });
 

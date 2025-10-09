@@ -16,11 +16,10 @@
 <body>
 	<header class="site-header">
 		<div class="container header-inner">
-			<a class="brand" href="#home" aria-label="Global Solutions home">
-				<img src="images/logo.svg" alt="Global Solutions logo" class="logo">
-				<span class="brand-text">Global Solutions</span>
+			<!-- Fix: Use logo itself as menu trigger on mobile, hide .nav-toggle button -->
+			<a class="brand menu-logo-trigger" href="#home" aria-label="Global Solutions home">
+				<img src="images/logo.svg" alt="Global Solutions logo" class="logo" id="menuLogoBtn">
 			</a>
-			<button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
 			<nav class="site-nav" aria-label="Primary">
 				<ul>
 					<li><a href="#home">Home</a></li>
