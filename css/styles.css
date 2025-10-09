@@ -207,3 +207,84 @@ body {
 /* --- Touch target improvements --- */
 .btn, .site-nav a, .nav-toggle { min-width: 44px; min-height: 44px; }
 
+/* Fix: Header/Nav mobile improvements */
+@media (max-width: 1024px) {
+  .site-header { padding-left: 0; padding-right: 0; }
+  .header-inner { padding-left: 10px; padding-right: 10px; }
+  .brand-text { display: inline; }
+  .logo { height: 52px; max-width: 90vw; }
+}
+@media (max-width: 768px) {
+  .header-inner { flex-direction: row; align-items: center; }
+  .logo { height: 44px; }
+  .nav-toggle { display: block; position: relative; z-index: 110; min-width: 44px; min-height: 44px; font-size: 26px; }
+  .site-nav { transition: max-height 0.32s cubic-bezier(.4,0,.2,1), opacity 0.28s; max-height: 0; opacity: 0; overflow: hidden; background: #fff; box-shadow: 0 8px 20px rgba(34,72,122,0.06); border-radius: 0 0 18px 18px; position: absolute; right: 0; left: 0; top: 100%; min-width: 190px; z-index: 99; }
+  .site-nav.open { display: block; opacity: 1; max-height: 540px; }
+  .site-nav ul { flex-direction: column; gap: 8px; padding: 18px 0 14px; }
+  .site-nav a { min-width: 44px; min-height: 44px; padding: 12px 30px; font-size: 19px; border-radius: 8px; margin: 0; }
+}
+@media (max-width: 480px) {
+  .header-inner { padding-top: 4px; padding-bottom: 4px; }
+  .logo { height: 36px; }
+  .site-nav a { font-size: 16px; padding: 10px 18px; }
+}
+.site-nav, .site-nav.open { will-change: max-height, opacity; }
+
+/* Fix: Image responsiveness and aspect ratio */
+img { max-width: 100%; height: auto; display: block; }
+.brand-logos img, .client-logos img, .slide-tile img, .logo { object-fit: contain; }
+.slide-tile img, .gallery-grid .ph { object-fit: cover; border-radius: 14px; }
+
+/* Fix: Form field full width and padding for mobile */
+@media (max-width: 768px) {
+  .enquiry form { grid-template-columns: 1fr !important; }
+  .enquiry input, .enquiry textarea { width: 100% !important; box-sizing: border-box; }
+  .enquiry form > div, .enquiry .full { margin-bottom: 20px; }
+}
+.enquiry input, .enquiry textarea {
+  padding: 14px 16px !important; /* Fix: field padding */
+}
+/* Fix: Hide or minimize bot text */
+.enquiry form p[hidden] { display: none !important; }
+
+.enquiry .btn.primary {
+  font-size: 1.15em; min-width: 44px; min-height: 44px; width: 100%; margin-top: 6px; padding: 16px 0!important; border-radius: 10px; /* Fix: large CTA button */
+}
+
+/* Fix: Standout CTA & sticky callback bar for mobile */
+.hero-cta .btn {
+  font-size: 1.12em; min-width: 44px; min-height: 48px; padding: 18px 22px; border-radius: 14px; font-weight: 700;
+}
+@media (max-width: 768px) {
+  .sticky-cta-bar { display: flex; position: fixed; z-index: 120; left: 0; right: 0; bottom: 0; background: var(--brand-dark); justify-content: center; align-items: center; min-height: 60px; box-shadow: 0 -4px 14px rgba(34,72,122,0.15); }
+  .sticky-cta-bar a { display: flex; align-items: center; justify-content: center; font-size: 1.14em; color: #fff; font-weight: 700; padding: 10px 26px; border-radius: 14px; background: var(--brand); box-shadow: 0 1px 6px rgba(0,160,243,0.10); text-decoration: none; min-height: 42px; min-width: 180px; transition: background 0.2s; }
+  .sticky-cta-bar a:hover { background: var(--brand-accent); color: #00374c; }
+  main { padding-bottom: 74px; /* Avoid bar overlap */ }
+}
+
+/* Fix: Footer mobile improvements */
+@media (max-width: 768px) {
+  .footer-inner, .footer-bottom { flex-direction: column!important; align-items: center !important; justify-content: center !important; text-align: center !important; display: flex !important; }
+  .footer-links ul, .footer-links { align-items: center!important; justify-content: center!important; }
+  .footer-bottom p { text-align: center; }
+  .site-footer { padding: 0 0 18px 0 !important; }
+}
+.site-footer { padding-bottom: 0; }
+/* Fix: Floating circular back-to-top button */
+.back-to-top {
+  width: 52px; height: 52px; border-radius: 50%; font-size: 2em; display: none; justify-content: center; align-items: center; background: var(--brand-dark); color: #fff; box-shadow: 0 2px 22px rgba(0,90,153,0.19);
+}
+@media (max-width: 560px) {
+  .back-to-top { width: 44px; height: 44px; font-size: 1.55em; }
+}
+.back-to-top.show { display: flex !important; }
+
+/* Fix: Section mobile spacing & overflow */
+@media (max-width: 768px) {
+  .section, .section.alt { padding-top: 40px !important; padding-bottom: 40px !important; margin-bottom: 16px !important; }
+  .section h2, .section-intro, h1, h3 { padding: 0 12px; line-height: 1.22; }
+  p, h2, h3, h4, li, label { line-height: 1.6; }
+  .container, main, body { padding-left: 16px !important; padding-right: 16px !important; }
+  html, body { overflow-x: hidden !important; }
+}
+

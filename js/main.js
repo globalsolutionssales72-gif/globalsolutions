@@ -144,5 +144,43 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 	}
 	animateOnScroll();
+
+	// Fix: Smooth mobile nav animation, prevent scroll when open
+	function handleMobileNavAccessibility() {
+		const navToggle = document.querySelector('.nav-toggle');
+		const nav = document.querySelector('.site-nav');
+		if (!(nav && navToggle)) return;
+		function openNav() {
+			nav.classList.add('open');
+			navToggle.setAttribute('aria-expanded','true');
+			document.body.style.overflow = 'hidden';
+		}
+		function closeNav() {
+			nav.classList.remove('open');
+			navToggle.setAttribute('aria-expanded','false');
+			document.body.style.overflow = '';
+		}
+		navToggle.addEventListener('click', function(e) {
+			const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+			if (!expanded) openNav();
+			else closeNav();
+		});
+		document.addEventListener('keydown', function(e){
+			if (e.key === 'Escape' && nav.classList.contains('open')) closeNav();
+		});
+		document.querySelectorAll('.site-nav a').forEach(function(link) {
+			link.addEventListener('click', closeNav);
+		});
+	}
+	handleMobileNavAccessibility();
+
+	// Fix: Show sticky CTA bar for mobile only
+	function toggleStickyCtaBar() {
+		var bar = document.querySelector('.sticky-cta-bar');
+		if (!bar) return;
+		if (window.innerWidth <= 768) bar.style.display = 'flex'; else bar.style.display = 'none';
+	}
+	window.addEventListener('resize', toggleStickyCtaBar);
+	window.addEventListener('DOMContentLoaded', toggleStickyCtaBar);
 });
 
