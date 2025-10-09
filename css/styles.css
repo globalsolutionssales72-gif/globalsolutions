@@ -334,3 +334,9 @@ img { max-width: 100%; height: auto; display: block; }
   .logo { height: 80px !important; width: 170px !important; margin-left: 24px !important; object-fit: contain; }
 }
 
+/* Fix: Remove padding from hero section on mobile */
+@media (max-width: 768px) {
+  .hero, .hero-inner { padding-left: 0 !important; padding-right: 0 !important; }
+  .hero { padding-top: 0 !important; padding-bottom: 0 !important; }
+}
+
