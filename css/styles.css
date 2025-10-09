@@ -323,3 +323,9 @@ img { max-width: 100%; height: auto; display: block; }
   .nav-toggle { margin-left: 8px; }
 }
 
+/* Fix: Larger logo and more compact CTA buttons for mobile */
+@media (max-width: 768px) {
+  .logo { height: 128px !important; margin-left: 24px !important; }
+  .hero-cta .btn { min-height: 36px; padding-top: 10px; padding-bottom: 10px; font-size: 1em; }
+}
+
