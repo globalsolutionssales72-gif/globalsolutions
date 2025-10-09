@@ -295,3 +295,10 @@ img { max-width: 100%; height: auto; display: block; }
   .logo { height: 60px !important; }
 }
 
+/* Fix: Mobile - increase logo size & align, only gallery images with side paddings */
+@media (max-width: 768px) {
+  .logo { height: 80px !important; margin: 0 auto 0 0; display: block; }
+  .header-inner { justify-content: start !important; }
+  .gallery-slideshow { padding-left: 16px; padding-right: 16px; }
+}
+
