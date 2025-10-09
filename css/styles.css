@@ -288,3 +288,10 @@ img { max-width: 100%; height: auto; display: block; }
   html, body { overflow-x: hidden !important; }
 }
 
+/* Fix: Remove horizontal padding & hide brand text on mobile, make logo bigger */
+@media (max-width: 768px) {
+  .container, main, body { padding-left: 0 !important; padding-right: 0 !important; }
+  .brand-text { display: none !important; }
+  .logo { height: 60px !important; }
+}
+
