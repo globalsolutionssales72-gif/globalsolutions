@@ -329,14 +329,3 @@ img { max-width: 100%; height: auto; display: block; }
   .hero-cta .btn { min-height: 36px; padding-top: 10px; padding-bottom: 10px; font-size: 1em; }
 }
 
-/* Fix: Logo wider and slightly shorter for mobile 'perfecto' look */
-@media (max-width: 768px) {
-  .logo { height: 80px !important; width: 170px !important; margin-left: 24px !important; object-fit: contain; }
-}
-
-/* Fix: Remove padding from hero section on mobile */
-@media (max-width: 768px) {
-  .hero, .hero-inner { padding-left: 0 !important; padding-right: 0 !important; }
-  .hero { padding-top: 0 !important; padding-bottom: 0 !important; }
-}
-
